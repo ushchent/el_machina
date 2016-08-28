@@ -73,10 +73,18 @@
 				dict[data_2016[i].n_okrug].push(data_2016[i]);
 			}
 		};
-сщ		var data_final = [];
+
+		var data_final = [];
 		for (var i = 1; i <= Object.keys(dict).length; i++) {
 			data_final.push(dict[i]);
 		};
+
+		var data_final = [];
+		for (var i = 1; i <= Object.keys(dict).length; i++) {
+			data_final.push(dict[i]);
+		};
+
+
 			var otvod = data_2016.filter(function(d) { return d.status == 2; });
 
 		var table = d3.select("#table")
