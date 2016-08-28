@@ -60,15 +60,19 @@
 		d3.select("#days").append("text").text(days_left);
 
 		function predict(d) {
+			var bingo = false;
 			for (var i = 0; i < d.length; i++) {
-
-			if (d[i].deputat == 1) {
-				return d[i].fio;
-				break;
-			} else {
+				if (d[i].deputat == 1) {
+					bingo = true;
+					response = d[i].fio
+					break;
+				}
+			}
+			if (bingo) {
+				return response;
+				} else {
 				return "Интрига сохраняется";
-			}
-			}
+				}
 		};
 		function get_class(d) {
 			if (d[1] == "Интрига сохраняется") {
@@ -77,6 +81,7 @@
 				return "red";
 			}
 		};
+
 		function process_data(data) {
 		var data_2016 = data.filter(function(d) { return d.year == "2016" && d.status != 2;
 			});
