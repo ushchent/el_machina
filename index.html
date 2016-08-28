@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="Предсказания итогов выборов в
+		Беларуси">
+		<title>ЛидЕр: машина для отбора правильных людей</title>
+		<link rel="stylesheet" href="css/styles.css">
+	</head>
+<body>
+<header>
+        <img src="img/logo.jpg" />
+    </header>
+	<main>
+	<h1>Отбери депутата</h1>
+	<section id="caption">
+		<p>Пока не поздно <sup>осталось <span id="days"></span> дней</sup></p>
+	</section>
+	<p>Избирательная машина "Лидер" облегчает выполнение
+	гражданского долга и подсказывает результаты выборов на основе
+	анализа данных предыдущих кампаний.</p>
+	<p>Как правило, в нижнюю палату белорусского парламента проходят:</p>
+	<ul>
+		<li>действующие депутаты</li>
+		<li>около 30% депутатов составляют женщины</li>
+	</ul>
+	<p>Кроме этого, мы предполагаем, что V Всебелорусское народное
+	собрание прошло в 2016 году не просто так, а было кастингом для
+	некоторых будущих депутатов, поэтому участие кандидата в Пятом ВНС
+	предлагается как признак прохождения в новый парламент. Эти данные
+	скоро будут добавлены.</p>
+	<section id="table">
+	</section>
+	</main>
+	<footer>
+		<script src="http://d3js.org/d3.v3.min.js"></script>
+	<script>
+		var today = new Date();
+		var today_base = today.toJSON().slice(0, 10);
+		var today = new Date(today_base);
+		var margin = new Date("2016-09-12");
+		var days_left = Math.round((margin.getTime() - today.getTime()) / 86400000);
+		d3.select("#days").append("text").text(days_left);
+
+		function predict(d) {
+			for (var i = 0; i < d.length; i++) {
+
+			if (d[i].deputat == 1) {
+				return d[i].fio;
+				break;
+			} else {
+				return "Интрига сохраняется";
+			}
+			}
+		};
+		function get_class(d) {
+			if (d[1] == "Интрига сохраняется") {
+				return "green";
+			} else {
+				return "red";
+			}
+		};
+		function process_data(data) {
+		var data_2016 = data.filter(function(d) { return d.year == "2016" && d.status != 2;
+			});
+
+		var dict = {};
+		for (var i = 0; i < data_2016.length; i++) {
+			if (data_2016[i].n_okrug in dict) {
+				dict[data_2016[i].n_okrug].push(data_2016[i]);
+			} else {
+				dict[data_2016[i].n_okrug] = [];
+				dict[data_2016[i].n_okrug].push(data_2016[i]);
+			}
+		};
+		console.log(Object.keys(dict));
+		console.log(data_2016.length);
+		var data_final = [];
+		for (var i = 1; i <= Object.keys(dict).length; i++) {
+			data_final.push(dict[i]);
+		};
+		console.log(data_final);
+			var otvod = data_2016.filter(function(d) { return d.status == 2; });
+
+		var table = d3.select("#table")
+					.append("table");
+		var thead = table
+					.append("thead").append("tr");
+		thead.selectAll("td")
+			.data(["Округ", "Депутат"])
+			.enter()
+			.append("td")
+			.text(function(d) { return d; });
+		var tbody = table
+					.append("tbody");
+		var trows = tbody
+					.selectAll("tr")
+					.data(data_final)
+					.enter()
+					.append("tr");
+		trows.selectAll("td")
+			.data(function(d) {
+				var temp_arr = [];
+					temp_arr.push(d[0].okrug);
+					temp_arr.push(predict(d));
+					return temp_arr;
+			})
+			.enter()
+			.append("td")
+			.text(function(d) { return d; })
+			.attr("class", function(d) {
+				if (d == "Интрига сохраняется") {
+					return "red";
+				} else {
+					return "green";
+				};
+			});
+			
+		}
+		d3.csv("train.csv", process_data);
+	</script>
+	</footer>
+<body>
+</html>
+
