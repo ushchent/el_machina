@@ -1,50 +1,42 @@
 <!doctype html>
 <html lang="ru">
-	<head>
-		<meta charset="utf-8">
-		<meta name="description" content="Машинные предсказания итогов выборов в
-		Беларуси. Посвящается Лидии Ермошиной.">
-		<title>Лидер: машина для отбора правильных депутатов</title>
-		<link rel="stylesheet" href="css/styles.css">
-		<link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
-		<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-		<script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-		<script>
-			var today = new Date();
-			var today_base = today.toJSON().slice(0, 10);
-			var today = new Date(today_base);
-			var margin = new Date("2019-11-18");
-			var days_left = Math.round((margin.getTime() - today.getTime()) / 86400000);
-		</script>
-	</head>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Машинные предсказания итогов выборов в
+        Беларуси. Посвящается Лидии Ермошиной.">
+        <title>Лидер: машина для отбора правильных депутатов</title>
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    </head>
 <body>
 <header>
-        <img src="img/logo.jpg" />
+    <img src="img/logo.jpg" />
     </header>
-	<main>
-	<h1>Машинный отбор депутатов</h1>
-	<section id="caption">
-		<p>Еще не поздно предсказать новый состав ПП НС<sup>осталось <span id="days"></span> дней</sup></p>
-	</section>
-	<p>Избирательная машина "ЛидЕр" облегчает выполнение
-	гражданского долга и подсказывает результаты выборов в Палату представителей на основе
-	анализа данных предыдущих кампаний.</p>
-	<h2>Ориентиры для предсказания из кампании 2016 года:</h2>
-	<ul>
-		<li>Если кандидат является действующим депутатом, то он скорее всего проходит в новый парламент</li>
-		<li>В парламенте действует неформальная квота на около 30% женщин</li>
-		<li>Кандидат от выраженно оппозиционной партии скорее всего не пройдет</li>
-		<li>Временно или длительный срок не работающий кандидат скорее всего не пройдет</li>
-		<li>Кандидат, который не собирал подписи граждан, скорее всего не пройдет</li>
-	</ul>
+    <main>
+    <h1>Машинный отбор депутатов</h1>
+    <p>Еще не поздно предсказать новый состав ПП НС <sup>осталось <span id="days"></span> дней</sup></p>
+    <p>Избирательная машина "ЛидЕр" облегчает выполнение
+    гражданского долга и подсказывает результаты выборов в Палату представителей на основе
+    анализа данных предыдущих кампаний.</p>
+    <h2>Ориентиры для предсказания из кампании 2016 года:</h2>
+    <ul>
+        <li>Если кандидат является действующим депутатом, то он скорее всего проходит в новый парламент</li>
+        <li>В парламенте действует неформальная квота на около 30% женщин</li>
+        <li>Кандидат от выраженно оппозиционной партии скорее всего не пройдет</li>
+        <li>Временно или длительный срок не работающий кандидат скорее всего не пройдет</li>
+        <li>Кандидат, который не собирал подписи граждан, скорее всего не пройдет</li>
+    </ul>
 
 <h2>Материалы</h2>
 
-<p>Исходные данные находятся в репозитории по адресам <a href="https://github.com/ushchent/el_machina">https://github.com/ushchent/el_machina</a> и <a href="https://github.com/opendataby/elect_machine">https://github.com/opendataby/elect_machine</a>.</p>
+<p>Исходные данные находятся в репозитории по адресам <a href="https://github.com/ushchent/el_machina">https://github.com/ushchent/el_machina</a> и <a href="https://github.com/opendataby/vybary2019">https://github.com/opendataby/vybary2019</a>.</p>
 
 <h2>Предсказательная таблица</h2>
 
-		<table id="prediction_table">
+        <table id="prediction_table">
 <thead>
 <tr><th>ФИО</th><th>Пол</th><th>День Рождения</th><th>Должность/ Занятие</th><th>Партия</th><th>Кем выдвинут</th><th>Знак Зодиака</th></tr>
 </thead>
@@ -577,19 +569,22 @@
 <tr><td>Яцыно Светлана Константиновна</td><td>ж</td><td>18 снежня 1958</td><td>индивидуальный предприниматель</td><td>Либерально-демократическая партия</td><td>политическая партия</td><td>Стрелец</td></tr>
 </tbody>
 </table>
-</tbody>
-</table>
-	<p>Репозиторий проекта: <a href="https://github.com/ushchent/el_machina">github.com/ushchent/el_machina</a></p>
-	</main>
-	<footer>
-	<p>Сделано в dataШколе сообщества "<a href="http://opendata.by">Открытые данные для Беларуси</a>".</p>
-	</footer>
-	<script>document.getElementById("days").innerHTML = days_left;</script>
-	<script>
-	$(document).ready( function () {
-    $('#prediction_table').DataTable();
-} );
-	</script>
+    <p>Репозиторий проекта: <a href="https://github.com/ushchent/el_machina">github.com/ushchent/el_machina</a></p>
+    </main>
+    <footer>
+    <p>Сделано в dataШколе сообщества "<a href="http://opendata.by">Открытые данные для Беларуси</a>".</p>
+    </footer>
+    <script>
+        var today = new Date();
+        var today_base = today.toJSON().slice(0, 10);
+        var today = new Date(today_base);
+        var margin = new Date("2019-11-18");
+        var days_left = Math.round((margin.getTime() - today.getTime()) / 86400000);
+        document.getElementById("days").innerHTML = days_left;
+        $(document).ready( function () {
+            $('#prediction_table').DataTable();
+        });
+    </script>
 <body>
 </html>
 

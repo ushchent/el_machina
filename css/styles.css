@@ -1,39 +1,23 @@
 header, footer {
-background: #2A2F4E;
-
+    background: #2A2F4E;
 }
 header {
-margin: 0;
+    margin: 0;
 }
-
 main h1 {
-margin-bottom: 5px;
+    margin-bottom: 5px;
 }
-#caption p {
-margin-top: 0;
-padding: 0;
-
-}
-#caption sup {
-font-size: 12px;
-margin-left: .5em;
-padding: 3px;
-background-color: orange;
-color: white;
+sup {
+    padding: 3px;
+    background-color: orange;
+    color: white;
 }
 body {
-margin: 0;
+    margin: 0;
 }
 main {
-margin-left: 3em;
-width: 80%;
-}
-
-.green {
-background-color: #C0ECCC;
-}
-.red {
-background-color: #F0B9B4;
+    margin-left: 3em;
+    width: 80%;
 }
 footer {
 	margin-top: 1em;
