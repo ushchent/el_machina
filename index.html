@@ -579,7 +579,11 @@
         var days_left = Math.round((margin.getTime() - today.getTime()) / 86400000);
         document.getElementById("days").innerHTML = days_left;
         $(document).ready( function () {
-            $('#prediction_table').DataTable();
+            $('#prediction_table').DataTable({
+		    "search": {
+			    "search": window.location.search
+		    }
+	    });
         });
     </script>
 </body>
