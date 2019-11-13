@@ -65,7 +65,7 @@ def get_zodiac_sign(date_string):
 	},
     }
 	
-    date_parts = date.split("-")
+    date_parts = date_string.split("-")
     month = date_parts[1]
     day = int(date_parts[2])
     
