@@ -4,6 +4,11 @@ header, footer {
 header {
     margin: 0;
 }
+header #vk {
+    float: right;
+    padding: 4px 6px;
+    margin: 4px 6px;
+}
 main h1 {
     margin-bottom: 5px;
 }
